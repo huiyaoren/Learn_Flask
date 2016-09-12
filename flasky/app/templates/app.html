@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+</head>
+<body>
+{% import "Bootstrap/wtf.html" as wtf %}
+{% block page_content %}
+{{ wtf.quick_form(form) }}
+{{ user_data }}
+
+<table class="gridtable">
+    <tr>
+        <th>用户名</th>
+        <th>角色 ID</th>
+        <th>操作</th>
+    </tr>
+    {% for user in user_data %}
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.role_id}}</td>
+        <td>
+            <a href="#">修改</a>
+            <a href="#">删除</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
+
+
+</body>
+</html>
