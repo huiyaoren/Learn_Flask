@@ -6,6 +6,7 @@
     <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
 </head>
 <body>
+
 {% import "Bootstrap/wtf.html" as wtf %}
 {% block page_content %}
 {{ wtf.quick_form(form) }}

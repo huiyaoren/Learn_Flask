@@ -1,3 +1,4 @@
+# coding: utf8
 from . import db
 
 
@@ -9,6 +10,12 @@ class Role(db.Model):
 
     def __repr__(self):
         return '<Role %r>' % self.name
+
+    # todo have not tested
+    @staticmethod
+    def seed():
+        db.session.add_all(map(lambda r: Role(name=r), ['Guest', 'Administrator']))
+        db.session.commit()
 
 
 class User(db.Model):
@@ -27,4 +34,3 @@ class User(db.Model):
 
 
 db.event.listen(User.username, 'append', User.on_created)
-
