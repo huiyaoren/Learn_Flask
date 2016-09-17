@@ -30,7 +30,7 @@ class User(db.Model):
     @staticmethod
     def on_created(target, value, oldvalue, initiator):
         # target.role = Role.query.filter_by(name='Guest').first()
-        target.role = 'Guest'
+        target.role_id = 1
 
 
-db.event.listen(User.username, 'append', User.on_created)
+db.event.listen(User.username, 'set', User.on_created)

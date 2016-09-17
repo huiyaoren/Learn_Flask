@@ -1,14 +1,14 @@
 # coding: utf8
 
-from flask import render_template, session, redirect, url_for, current_app
+from flask import render_template, session, redirect, url_for, current_app, jsonify
 from .. import db
-from ..models import User
+from ..models import User, Role
 from ..email import send_email
 from . import main
 from .forms import NameForm, AppForm
 
 
-@main.route('/', methods=['GET', 'POST'])
+@main.route('/ass', methods=['GET', 'POST'])
 def index():
     form = NameForm()
     if form.validate_on_submit():
@@ -38,10 +38,22 @@ def app():
             user = User(username=form.name.data)
             db.session.add(user)
         return redirect(url_for('.app'))
-    # todo 种子函数
-    # todo 测试数据库事件
+    # 种子函数 ok
+    # 测试数据库事件 ok
 
+    # 打印 Role 表内容 ok
     user_data = User.query.all()
+    role_data = Role.query.all()
     return render_template('app.html',
                            form=form,
-                           user_data=user_data)
+                           user_data=user_data,
+                           role_data=role_data)
+
+@main.route('/delete', methods=['delete'])
+def delete():
+    return jsonify(result=4)
+
+@main.route('/post', methods=['post'])
+def post():
+
+    return jsonify(asdf=5432)
