@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		{% if title %}
-		<title>{{title}} - microblog</title>
-		{% else %}
-		<title>Welcome - microblog</title>
-		{% endif %}
-	</head>
-	<body>
-		<div>Microblog: <a href="/index">home</a></div>
-		<hr>
-		{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		<ul>
-		{% for message in messages %}
-			<li>{{ message }}</li>
-		{% endfor %}
-		</ul>
-		{% endif %}
-		{% endwith %}
-		{% block content %}
-		{% import "bootstrap/wtf.html" as wtf %}
-		{{ wtf.quick_form(form) }}
-		{% endblock %}
-	</body>
-</html>
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Flasky{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
+    {% if not known %}
+    <p>Pleased to meet you!</p>
+    {% else %}
+    <p>Happy to see you again!</p>
+    {% endif %}
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}
