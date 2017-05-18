@@ -9,7 +9,7 @@ from .forms import NameForm, AppForm
 
 
 @main.route('/ass', methods=['GET', 'POST'])
-def index():
+def ass():
     form = NameForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.name.data).first()
@@ -56,3 +56,7 @@ def delete():
 @main.route('/post', methods=['post'])
 def post():
     return jsonify(asdf=5432)
+
+@main.route('/panda', methods=['GET'])
+def panda():
+    return 'sdf'
